@@ -4,8 +4,11 @@
 	"keywords": [
 		"module",
 		"member",
+		"single-user",
 		"ommu",
-		"ommu platform"
+		"ommu-platform",
+		"yii",
+		"yii2"
 	],
 	"homepage": "https://github.com/ommu/mod-member",
 	"type": "ommu-module",
