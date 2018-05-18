@@ -1,5 +1,5 @@
 {
-	"name": "ommu/mod-member",
+	"name": "ommu/member",
 	"description": "Single User Module from Ommu Platform",
 	"keywords": [
 		"module",
@@ -29,5 +29,11 @@
 			"homepage": "https://putra.sudaryanto.id",
 			"role": "Creator"
 		}
-	]
+	],
+	"extra": {
+		"branch-alias": {
+			"dev-version-1.x": "1.x-dev",
+			"dev-version-2.x": "2.x-dev"
+		}
+	}
 }
