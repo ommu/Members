@@ -139,6 +139,9 @@ class MemberFollowers extends \app\components\ActiveRecord
 		if(!(Yii::$app instanceof \app\components\Application))
 			return;
 
+		if(!$this->hasMethod('search'))
+			return;
+
 		$this->templateColumns['_no'] = [
 			'header' => Yii::t('app', 'No'),
 			'class' => 'yii\grid\SerialColumn',
