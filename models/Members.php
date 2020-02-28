@@ -60,6 +60,7 @@ use yii\web\UploadedFile;
 use thamtech\uuid\helpers\UuidHelper;
 use ommu\users\models\Users;
 use ommu\member\models\view\MemberUser as MemberUserView;
+use yii\helpers\Json;
 
 class Members extends \app\components\ActiveRecord
 {
@@ -73,7 +74,9 @@ class Members extends \app\components\ActiveRecord
 
 	public $approved_search;
 	public $creation_search;
-	public $modified_search;
+    public $modified_search;
+
+    public $oldProfileId;
 
 	const SCENARIO_MEMBER_COMPANY = 'company';
 
@@ -521,7 +524,9 @@ class Members extends \app\components\ActiveRecord
 
 		$this->old_photo_header_i = $this->photo_header;
 		$this->old_photo_profile_i = $this->photo_profile;
-		$this->old_approved_i = $this->approved;
+        $this->old_approved_i = $this->approved;
+
+        $this->oldProfileId = $this->profile_id;
 	}
 
 	/**
@@ -612,6 +617,20 @@ class Members extends \app\components\ActiveRecord
 					if($this->photo_profile == '')
 						$this->photo_profile = $this->old_photo_profile_i;
 				}
+	
+                // error update profile_id
+                if(array_key_exists('profile_id', $this->dirtyAttributes) && $this->dirtyAttributes['profile_id'] != $this->oldProfileId) {
+                    $module = strtolower(Yii::$app->controller->module->id);
+                    $controller = strtolower(Yii::$app->controller->id);
+                    $action = strtolower(Yii::$app->controller->action->id);
+
+                    $this->_location_update = Json::encode([
+                        'module' => $module ?: '',
+                        'controller' => $controller ?: '',
+                        'action' => $action ?: '',
+                        'url' => Url::current(),
+                    ]);
+                }
 
 			}
 		}
