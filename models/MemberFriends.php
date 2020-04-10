@@ -2,9 +2,9 @@
 /**
  * MemberFriends
  * 
- * @author Putra Sudaryanto <putra@ommu.co>
+ * @author Putra Sudaryanto <putra@ommu.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2018 Ommu Platform (www.ommu.co)
+ * @copyright Copyright (c) 2018 OMMU (www.ommu.id)
  * @created date 31 October 2018, 05:27 WIB
  * @link https://github.com/ommu/mod-member
  *
@@ -37,11 +37,11 @@ use ommu\users\models\Users;
 
 class MemberFriends extends \app\components\ActiveRecord
 {
-	public $gridForbiddenColumn = ['modified_date','modified_search'];
+	public $gridForbiddenColumn = ['modified_date','modifiedDisplayname'];
 
-	public $user_search;
+	public $userDisplayname;
 	public $request_search;
-	public $modified_search;
+	public $modifiedDisplayname;
 
 	/**
 	 * @return string the associated database table name
@@ -77,9 +77,9 @@ class MemberFriends extends \app\components\ActiveRecord
 			'request_date' => Yii::t('app', 'Request Date'),
 			'modified_date' => Yii::t('app', 'Modified Date'),
 			'modified_id' => Yii::t('app', 'Modified'),
-			'user_search' => Yii::t('app', 'User'),
+			'userDisplayname' => Yii::t('app', 'User'),
 			'request_search' => Yii::t('app', 'Request'),
-			'modified_search' => Yii::t('app', 'Modified'),
+			'modifiedDisplayname' => Yii::t('app', 'Modified'),
 		];
 	}
 
@@ -146,8 +146,8 @@ class MemberFriends extends \app\components\ActiveRecord
 			return;
 
 		$this->templateColumns['_no'] = [
-			'header' => Yii::t('app', 'No'),
-			'class' => 'yii\grid\SerialColumn',
+			'header' => '#',
+			'class' => 'app\components\grid\SerialColumn',
 			'contentOptions' => ['class'=>'center'],
 		];
 		if(!Yii::$app->request->get('type')) {
@@ -160,8 +160,8 @@ class MemberFriends extends \app\components\ActiveRecord
 			];
 		}
 		if(!Yii::$app->request->get('user')) {
-			$this->templateColumns['user_search'] = [
-				'attribute' => 'user_search',
+			$this->templateColumns['userDisplayname'] = [
+				'attribute' => 'userDisplayname',
 				'value' => function($model, $key, $index, $column) {
 					return isset($model->user) ? $model->user->displayname : '-';
 				},
@@ -190,8 +190,8 @@ class MemberFriends extends \app\components\ActiveRecord
 			'filter' => $this->filterDatepicker($this, 'modified_date'),
 		];
 		if(!Yii::$app->request->get('modified')) {
-			$this->templateColumns['modified_search'] = [
-				'attribute' => 'modified_search',
+			$this->templateColumns['modifiedDisplayname'] = [
+				'attribute' => 'modifiedDisplayname',
 				'value' => function($model, $key, $index, $column) {
 					return isset($model->modified) ? $model->modified->displayname : '-';
 					// return $model->modifiedDisplayname;

@@ -5,9 +5,9 @@
  * @var $this ommu\member\controllers\manage\FriendController
  * @var $model ommu\member\models\MemberFriends
  *
- * @author Putra Sudaryanto <putra@ommu.co>
+ * @author Putra Sudaryanto <putra@ommu.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2018 Ommu Platform (www.ommu.co)
+ * @copyright Copyright (c) 2018 OMMU (www.ommu.id)
  * @created date 31 October 2018, 13:53 WIB
  * @link https://github.com/ommu/mod-member
  *
@@ -40,7 +40,7 @@ $this->params['menu']['content'] = [
 			'value' => isset($model->type) ? $model->type->title->message : '-',
 		],
 		[
-			'attribute' => 'user_search',
+			'attribute' => 'userDisplayname',
 			'value' => isset($model->user) ? $model->user->displayname : '-',
 		],
 		[
@@ -56,7 +56,7 @@ $this->params['menu']['content'] = [
 			'value' => Yii::$app->formatter->asDatetime($model->modified_date, 'medium'),
 		],
 		[
-			'attribute' => 'modified_search',
+			'attribute' => 'modifiedDisplayname',
 			'value' => isset($model->modified) ? $model->modified->displayname : '-',
 		],
 	],

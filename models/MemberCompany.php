@@ -2,9 +2,9 @@
 /**
  * MemberCompany
  * 
- * @author Putra Sudaryanto <putra@ommu.co>
+ * @author Putra Sudaryanto <putra@ommu.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2018 Ommu Platform (www.ommu.co)
+ * @copyright Copyright (c) 2018 OMMU (www.ommu.id)
  * @created date 31 October 2018, 15:29 WIB
  * @link https://github.com/ommu/mod-member
  *
@@ -52,11 +52,11 @@ use app\modules\ipedia\models\IpediaCompany as IpediaCompanies;
 
 class MemberCompany extends \app\components\ActiveRecord
 {
-	public $gridForbiddenColumn = ['info_intro','info_article','company_country_id','company_province_id','company_city_id','company_district','company_village','company_zipcode','creation_date','creation_search','modified_date','modified_search','updated_date'];
+	public $gridForbiddenColumn = ['info_intro','info_article','company_country_id','company_province_id','company_city_id','company_district','company_village','company_zipcode','creation_date','creationDisplayname','modified_date','modifiedDisplayname','updated_date'];
 	public $member_i;
 
-	public $creation_search;
-	public $modified_search;
+	public $creationDisplayname;
+	public $modifiedDisplayname;
 
 	const SCENARIO_CREATE = 'create';
 	const SCENARIO_UPDATE = 'update';
@@ -121,8 +121,8 @@ class MemberCompany extends \app\components\ActiveRecord
 			'modified_id' => Yii::t('app', 'Modified'),
 			'updated_date' => Yii::t('app', 'Updated Date'),
 			'member_i' => Yii::t('app', 'Company'),
-			'creation_search' => Yii::t('app', 'Creation'),
-			'modified_search' => Yii::t('app', 'Modified'),
+			'creationDisplayname' => Yii::t('app', 'Creation'),
+			'modifiedDisplayname' => Yii::t('app', 'Modified'),
 		];
 	}
 
@@ -207,8 +207,8 @@ class MemberCompany extends \app\components\ActiveRecord
 			return;
 
 		$this->templateColumns['_no'] = [
-			'header' => Yii::t('app', 'No'),
-			'class' => 'yii\grid\SerialColumn',
+			'header' => '#',
+			'class' => 'app\components\grid\SerialColumn',
 			'contentOptions' => ['class'=>'center'],
 		];
 		if(!Yii::$app->request->get('member')) {
@@ -299,8 +299,8 @@ class MemberCompany extends \app\components\ActiveRecord
 			'filter' => $this->filterDatepicker($this, 'creation_date'),
 		];
 		if(!Yii::$app->request->get('creation')) {
-			$this->templateColumns['creation_search'] = [
-				'attribute' => 'creation_search',
+			$this->templateColumns['creationDisplayname'] = [
+				'attribute' => 'creationDisplayname',
 				'value' => function($model, $key, $index, $column) {
 					return isset($model->creation) ? $model->creation->displayname : '-';
 					// return $model->creationDisplayname;
@@ -315,8 +315,8 @@ class MemberCompany extends \app\components\ActiveRecord
 			'filter' => $this->filterDatepicker($this, 'modified_date'),
 		];
 		if(!Yii::$app->request->get('modified')) {
-			$this->templateColumns['modified_search'] = [
-				'attribute' => 'modified_search',
+			$this->templateColumns['modifiedDisplayname'] = [
+				'attribute' => 'modifiedDisplayname',
 				'value' => function($model, $key, $index, $column) {
 					return isset($model->modified) ? $model->modified->displayname : '-';
 					// return $model->modifiedDisplayname;

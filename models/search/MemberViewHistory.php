@@ -4,9 +4,9 @@
  *
  * MemberViewHistory represents the model behind the search form about `ommu\member\models\MemberViewHistory`.
  *
- * @author Putra Sudaryanto <putra@ommu.co>
+ * @author Putra Sudaryanto <putra@ommu.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2018 Ommu Platform (www.ommu.co)
+ * @copyright Copyright (c) 2018 OMMU (www.ommu.id)
  * @created date 31 October 2018, 12:54 WIB
  * @link https://github.com/ommu/mod-member
  *
@@ -28,7 +28,7 @@ class MemberViewHistory extends MemberViewHistoryModel
 	{
 		return [
 			[['id', 'view_id'], 'integer'],
-			[['view_date', 'view_ip', 'profile_search', 'member_search', 'user_search'], 'safe'],
+			[['view_date', 'view_ip', 'profile_search', 'member_search', 'userDisplayname'], 'safe'],
 		];
 	}
 
@@ -89,7 +89,7 @@ class MemberViewHistory extends MemberViewHistoryModel
 			'asc' => ['member.displayname' => SORT_ASC],
 			'desc' => ['member.displayname' => SORT_DESC],
 		];
-		$attributes['user_search'] = [
+		$attributes['userDisplayname'] = [
 			'asc' => ['user.displayname' => SORT_ASC],
 			'desc' => ['user.displayname' => SORT_DESC],
 		];
@@ -118,7 +118,7 @@ class MemberViewHistory extends MemberViewHistoryModel
 
 		$query->andFilterWhere(['like', 't.view_ip', $this->view_ip])
 			->andFilterWhere(['like', 'member.displayname', $this->member_search])
-			->andFilterWhere(['like', 'user.displayname', $this->user_search]);
+			->andFilterWhere(['like', 'user.displayname', $this->userDisplayname]);
 
 		return $dataProvider;
 	}

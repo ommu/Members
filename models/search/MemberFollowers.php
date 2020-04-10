@@ -4,9 +4,9 @@
  *
  * MemberFollowers represents the model behind the search form about `ommu\member\models\MemberFollowers`.
  *
- * @author Putra Sudaryanto <putra@ommu.co>
+ * @author Putra Sudaryanto <putra@ommu.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2018 Ommu Platform (www.ommu.co)
+ * @copyright Copyright (c) 2018 OMMU (www.ommu.id)
  * @created date 31 October 2018, 07:02 WIB
  * @link https://github.com/ommu/mod-member
  *
@@ -28,7 +28,7 @@ class MemberFollowers extends MemberFollowersModel
 	{
 		return [
 			[['id', 'publish', 'member_id', 'user_id', 'modified_id'], 'integer'],
-			[['creation_date', 'modified_date', 'updated_date', 'member_search', 'user_search', 'modified_search', 'profile_search'], 'safe'],
+			[['creation_date', 'modified_date', 'updated_date', 'member_search', 'userDisplayname', 'modifiedDisplayname', 'profile_search'], 'safe'],
 		];
 	}
 
@@ -86,11 +86,11 @@ class MemberFollowers extends MemberFollowersModel
 			'asc' => ['member.displayname' => SORT_ASC],
 			'desc' => ['member.displayname' => SORT_DESC],
 		];
-		$attributes['user_search'] = [
+		$attributes['userDisplayname'] = [
 			'asc' => ['user.displayname' => SORT_ASC],
 			'desc' => ['user.displayname' => SORT_DESC],
 		];
-		$attributes['modified_search'] = [
+		$attributes['modifiedDisplayname'] = [
 			'asc' => ['modified.displayname' => SORT_ASC],
 			'desc' => ['modified.displayname' => SORT_DESC],
 		];
@@ -135,8 +135,8 @@ class MemberFollowers extends MemberFollowersModel
 		}
 
 		$query->andFilterWhere(['like', 'member.displayname', $this->member_search])
-			->andFilterWhere(['like', 'user.displayname', $this->user_search])
-			->andFilterWhere(['like', 'modified.displayname', $this->modified_search]);
+			->andFilterWhere(['like', 'user.displayname', $this->userDisplayname])
+			->andFilterWhere(['like', 'modified.displayname', $this->modifiedDisplayname]);
 
 		return $dataProvider;
 	}

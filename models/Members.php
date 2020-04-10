@@ -2,9 +2,9 @@
 /**
  * Members
  * 
- * @author Putra Sudaryanto <putra@ommu.co>
+ * @author Putra Sudaryanto <putra@ommu.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2018 Ommu Platform (www.ommu.co)
+ * @copyright Copyright (c) 2018 OMMU (www.ommu.id)
  * @created date 30 October 2018, 15:22 WIB
  * @created date 2 November 2018, 06:46 WIB
  * @link https://github.com/ommu/mod-member
@@ -67,14 +67,14 @@ class Members extends \app\components\ActiveRecord
 	use \ommu\traits\UtilityTrait;
 	use \ommu\traits\FileTrait;
 
-	public $gridForbiddenColumn = ['photo_header','short_biography','approved_date','approved_search','creation_date','creation_search','modified_date','modified_search','updated_date'];
+	public $gridForbiddenColumn = ['photo_header','short_biography','approved_date','approved_search','creation_date','creationDisplayname','modified_date','modifiedDisplayname','updated_date'];
 	public $old_photo_header_i;
 	public $old_photo_profile_i;
 	public $old_approved_i;
 
 	public $approved_search;
-	public $creation_search;
-    public $modified_search;
+	public $creationDisplayname;
+    public $modifiedDisplayname;
 
     public $oldProfileId;
 
@@ -138,8 +138,8 @@ class Members extends \app\components\ActiveRecord
 			'old_photo_header_i' => Yii::t('app', 'Old Photo Header'),
 			'old_photo_profile_i' => Yii::t('app', 'Old Photo Profile'),
 			'approved_search' => Yii::t('app', 'Approved'),
-			'creation_search' => Yii::t('app', 'Creation'),
-			'modified_search' => Yii::t('app', 'Modified'),
+			'creationDisplayname' => Yii::t('app', 'Creation'),
+			'modifiedDisplayname' => Yii::t('app', 'Modified'),
 		];
 	}
 
@@ -338,8 +338,8 @@ class Members extends \app\components\ActiveRecord
 			return;
 
 		$this->templateColumns['_no'] = [
-			'header' => Yii::t('app', 'No'),
-			'class' => 'yii\grid\SerialColumn',
+			'header' => '#',
+			'class' => 'app\components\grid\SerialColumn',
 			'contentOptions' => ['class'=>'center'],
 		];
 		$this->templateColumns['photo_profile'] = [
@@ -408,8 +408,8 @@ class Members extends \app\components\ActiveRecord
 			'filter' => $this->filterDatepicker($this, 'creation_date'),
 		];
 		if(!Yii::$app->request->get('creation')) {
-			$this->templateColumns['creation_search'] = [
-				'attribute' => 'creation_search',
+			$this->templateColumns['creationDisplayname'] = [
+				'attribute' => 'creationDisplayname',
 				'value' => function($model, $key, $index, $column) {
 					return isset($model->creation) ? $model->creation->displayname : '-';
 					// return $model->creationDisplayname;
@@ -424,8 +424,8 @@ class Members extends \app\components\ActiveRecord
 			'filter' => $this->filterDatepicker($this, 'modified_date'),
 		];
 		if(!Yii::$app->request->get('modified')) {
-			$this->templateColumns['modified_search'] = [
-				'attribute' => 'modified_search',
+			$this->templateColumns['modifiedDisplayname'] = [
+				'attribute' => 'modifiedDisplayname',
 				'value' => function($model, $key, $index, $column) {
 					return isset($model->modified) ? $model->modified->displayname : '-';
 					// return $model->modifiedDisplayname;
@@ -514,6 +514,14 @@ class Members extends \app\components\ActiveRecord
 	{
 		return ($returnAlias ? Yii::getAlias('@public/member') : 'member');
 	}
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getMemberId()
+    {
+        return new \ommu\member\models\query\Members(get_called_class());
+    }
 
 	/**
 	 * after find attributes

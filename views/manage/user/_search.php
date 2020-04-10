@@ -6,9 +6,9 @@
  * @var $model ommu\member\models\search\MemberUser
  * @var $form yii\widgets\ActiveForm
  *
- * @author Putra Sudaryanto <putra@ommu.co>
+ * @author Putra Sudaryanto <putra@ommu.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2018 Ommu Platform (www.ommu.co)
+ * @copyright Copyright (c) 2018 OMMU (www.ommu.id)
  * @created date 31 October 2018, 13:38 WIB
  * @link https://github.com/ommu/mod-member
  *
@@ -40,17 +40,17 @@ use ommu\member\models\MemberProfile;
 		echo $form->field($model, 'level_id')
 			->dropDownList($level, ['prompt'=>'']);?>
 
-		<?php echo $form->field($model, 'user_search');?>
+		<?php echo $form->field($model, 'userDisplayname');?>
 
 		<?php echo $form->field($model, 'creation_date')
 			->input('date');?>
 
-		<?php echo $form->field($model, 'creation_search');?>
+		<?php echo $form->field($model, 'creationDisplayname');?>
 
 		<?php echo $form->field($model, 'modified_date')
 			->input('date');?>
 
-		<?php echo $form->field($model, 'modified_search');?>
+		<?php echo $form->field($model, 'modifiedDisplayname');?>
 
 		<?php echo $form->field($model, 'updated_date')
 			->input('date');?>

@@ -5,9 +5,9 @@
  * This is the ActiveQuery class for [[\ommu\member\models\MemberFollowerHistory]].
  * @see \ommu\member\models\MemberFollowerHistory
  * 
- * @author Putra Sudaryanto <putra@ommu.co>
+ * @author Putra Sudaryanto <putra@ommu.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2018 Ommu Platform (www.ommu.co)
+ * @copyright Copyright (c) 2018 OMMU (www.ommu.id)
  * @created date 31 October 2018, 06:18 WIB
  * @link https://github.com/ommu/mod-member
  *
@@ -29,7 +29,7 @@ class MemberFollowerHistory extends \yii\db\ActiveQuery
 	 */
 	public function follow() 
 	{
-		return $this->andWhere(['publish' => 1]);
+		return $this->andWhere(['t.publish' => 1]);
 	}
 
 	/**
@@ -37,7 +37,7 @@ class MemberFollowerHistory extends \yii\db\ActiveQuery
 	 */
 	public function unfollow() 
 	{
-		return $this->andWhere(['publish' => 0]);
+		return $this->andWhere(['t.publish' => 0]);
 	}
 
 	/**

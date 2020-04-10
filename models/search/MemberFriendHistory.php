@@ -4,9 +4,9 @@
  *
  * MemberFriendHistory represents the model behind the search form about `ommu\member\models\MemberFriendHistory`.
  *
- * @author Putra Sudaryanto <putra@ommu.co>
+ * @author Putra Sudaryanto <putra@ommu.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2018 Ommu Platform (www.ommu.co)
+ * @copyright Copyright (c) 2018 OMMU (www.ommu.id)
  * @created date 31 October 2018, 05:45 WIB
  * @link https://github.com/ommu/mod-member
  *
@@ -28,7 +28,7 @@ class MemberFriendHistory extends MemberFriendHistoryModel
 	{
 		return [
 			[['id', 'type_id', 'friend_id', 'creation_id'], 'integer'],
-			[['creation_date', 'creation_search', 'st_user_search', 'nd_user_search'], 'safe'],
+			[['creation_date', 'creationDisplayname', 'st_user_search', 'nd_user_search'], 'safe'],
 		];
 	}
 
@@ -86,7 +86,7 @@ class MemberFriendHistory extends MemberFriendHistoryModel
 			'asc' => ['type.message' => SORT_ASC],
 			'desc' => ['type.message' => SORT_DESC],
 		];
-		$attributes['creation_search'] = [
+		$attributes['creationDisplayname'] = [
 			'asc' => ['creation.displayname' => SORT_ASC],
 			'desc' => ['creation.displayname' => SORT_DESC],
 		];
@@ -122,7 +122,7 @@ class MemberFriendHistory extends MemberFriendHistoryModel
 			't.creation_id' => isset($params['creation']) ? $params['creation'] : $this->creation_id,
 		]);
 
-		$query->andFilterWhere(['like', 'creation.displayname', $this->creation_search])
+		$query->andFilterWhere(['like', 'creation.displayname', $this->creationDisplayname])
 			->andFilterWhere(['like', 'user.displayname', $this->st_user_search])
 			->andFilterWhere(['like', 'request.displayname', $this->nd_user_search]);
 

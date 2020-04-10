@@ -4,9 +4,9 @@
  *
  * MemberContactCategory represents the model behind the search form about `ommu\member\models\MemberContactCategory`.
  *
- * @author Putra Sudaryanto <putra@ommu.co>
+ * @author Putra Sudaryanto <putra@ommu.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2018 Ommu Platform (www.ommu.co)
+ * @copyright Copyright (c) 2018 OMMU (www.ommu.id)
  * @created date 4 October 2018, 14:36 WIB
  * @link https://github.com/ommu/mod-member
  *
@@ -28,7 +28,7 @@ class MemberContactCategory extends MemberContactCategoryModel
 	{
 		return [
 			[['cat_id', 'publish', 'cat_name', 'creation_id', 'modified_id'], 'integer'],
-			[['creation_date', 'modified_date', 'updated_date', 'cat_name_i', 'creation_search', 'modified_search'], 'safe'],
+			[['creation_date', 'modified_date', 'updated_date', 'cat_name_i', 'creationDisplayname', 'modifiedDisplayname'], 'safe'],
 		];
 	}
 
@@ -85,11 +85,11 @@ class MemberContactCategory extends MemberContactCategoryModel
 			'asc' => ['title.message' => SORT_ASC],
 			'desc' => ['title.message' => SORT_DESC],
 		];
-		$attributes['creation_search'] = [
+		$attributes['creationDisplayname'] = [
 			'asc' => ['creation.displayname' => SORT_ASC],
 			'desc' => ['creation.displayname' => SORT_DESC],
 		];
-		$attributes['modified_search'] = [
+		$attributes['modifiedDisplayname'] = [
 			'asc' => ['modified.displayname' => SORT_ASC],
 			'desc' => ['modified.displayname' => SORT_DESC],
 		];
@@ -127,8 +127,8 @@ class MemberContactCategory extends MemberContactCategoryModel
 		}
 
 		$query->andFilterWhere(['like', 'title.message', $this->cat_name_i])
-			->andFilterWhere(['like', 'creation.displayname', $this->creation_search])
-			->andFilterWhere(['like', 'modified.displayname', $this->modified_search]);
+			->andFilterWhere(['like', 'creation.displayname', $this->creationDisplayname])
+			->andFilterWhere(['like', 'modified.displayname', $this->modifiedDisplayname]);
 
 		return $dataProvider;
 	}

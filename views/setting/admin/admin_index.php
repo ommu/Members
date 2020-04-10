@@ -5,9 +5,9 @@
  * @var $this ommu\member\controllers\setting\AdminController
  * @var $model ommu\member\models\MemberSetting
  *
- * @author Putra Sudaryanto <putra@ommu.co>
+ * @author Putra Sudaryanto <putra@ommu.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2018 Ommu Platform (www.ommu.co)
+ * @copyright Copyright (c) 2018 OMMU (www.ommu.id)
  * @created date 5 November 2018, 06:17 WIB
  * @link https://github.com/ommu/mod-member
  *
@@ -86,7 +86,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			'value' => Yii::$app->formatter->asDatetime($model->modified_date, 'medium'),
 		],
 		[
-			'attribute' => 'modified_search',
+			'attribute' => 'modifiedDisplayname',
 			'value' => isset($model->modified) ? $model->modified->displayname : '-',
 		],
 		[

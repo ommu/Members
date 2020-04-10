@@ -5,9 +5,9 @@
  * This is the ActiveQuery class for [[\ommu\member\models\MemberSetting]].
  * @see \ommu\member\models\MemberSetting
  * 
- * @author Putra Sudaryanto <putra@ommu.co>
+ * @author Putra Sudaryanto <putra@ommu.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2018 Ommu Platform (www.ommu.co)
+ * @copyright Copyright (c) 2018 OMMU (www.ommu.id)
  * @created date 5 November 2018, 06:12 WIB
  * @link https://github.com/ommu/mod-member
  *

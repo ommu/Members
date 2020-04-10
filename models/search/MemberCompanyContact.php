@@ -4,9 +4,9 @@
  *
  * MemberCompanyContact represents the model behind the search form about `ommu\member\models\MemberCompanyContact`.
  *
- * @author Putra Sudaryanto <putra@ommu.co>
+ * @author Putra Sudaryanto <putra@ommu.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2018 Ommu Platform (www.ommu.co)
+ * @copyright Copyright (c) 2018 OMMU (www.ommu.id)
  * @created date 1 November 2018, 19:49 WIB
  * @link https://github.com/ommu/mod-member
  *
@@ -28,7 +28,7 @@ class MemberCompanyContact extends MemberCompanyContactModel
 	{
 		return [
 			[['id', 'publish', 'status', 'member_company_id', 'contact_cat_id', 'verified_id', 'creation_id', 'modified_id'], 'integer'],
-			[['contact_value', 'verified_date', 'creation_date', 'modified_date', 'updated_date', 'verified_search', 'creation_search', 'modified_search', 'profile_search', 'member_search'], 'safe'],
+			[['contact_value', 'verified_date', 'creation_date', 'modified_date', 'updated_date', 'verified_search', 'creationDisplayname', 'modifiedDisplayname', 'profile_search', 'member_search'], 'safe'],
 		];
 	}
 
@@ -96,11 +96,11 @@ class MemberCompanyContact extends MemberCompanyContactModel
 			'asc' => ['verified.displayname' => SORT_ASC],
 			'desc' => ['verified.displayname' => SORT_DESC],
 		];
-		$attributes['creation_search'] = [
+		$attributes['creationDisplayname'] = [
 			'asc' => ['creation.displayname' => SORT_ASC],
 			'desc' => ['creation.displayname' => SORT_DESC],
 		];
-		$attributes['modified_search'] = [
+		$attributes['modifiedDisplayname'] = [
 			'asc' => ['modified.displayname' => SORT_ASC],
 			'desc' => ['modified.displayname' => SORT_DESC],
 		];
@@ -151,8 +151,8 @@ class MemberCompanyContact extends MemberCompanyContactModel
 		$query->andFilterWhere(['like', 't.contact_value', $this->contact_value])
 			->andFilterWhere(['like', 'member.displayname', $this->member_search])
 			->andFilterWhere(['like', 'verified.displayname', $this->verified_search])
-			->andFilterWhere(['like', 'creation.displayname', $this->creation_search])
-			->andFilterWhere(['like', 'modified.displayname', $this->modified_search]);
+			->andFilterWhere(['like', 'creation.displayname', $this->creationDisplayname])
+			->andFilterWhere(['like', 'modified.displayname', $this->modifiedDisplayname]);
 
 		return $dataProvider;
 	}

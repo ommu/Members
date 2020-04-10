@@ -2,9 +2,9 @@
 /**
  * MemberViewHistory
  * 
- * @author Putra Sudaryanto <putra@ommu.co>
+ * @author Putra Sudaryanto <putra@ommu.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2018 Ommu Platform (www.ommu.co)
+ * @copyright Copyright (c) 2018 OMMU (www.ommu.id)
  * @created date 31 October 2018, 12:49 WIB
  * @link https://github.com/ommu/mod-member
  *
@@ -33,7 +33,7 @@ class MemberViewHistory extends \app\components\ActiveRecord
 
 	public $profile_search;
 	public $member_search;
-	public $user_search;
+	public $userDisplayname;
 
 	/**
 	 * @return string the associated database table name
@@ -69,7 +69,7 @@ class MemberViewHistory extends \app\components\ActiveRecord
 			'view_ip' => Yii::t('app', 'View IP'),
 			'profile_search' => Yii::t('app', 'Profile'),
 			'member_search' => Yii::t('app', 'Member'),
-			'user_search' => Yii::t('app', 'User'),
+			'userDisplayname' => Yii::t('app', 'User'),
 		];
 	}
 
@@ -104,8 +104,8 @@ class MemberViewHistory extends \app\components\ActiveRecord
 			return;
 
 		$this->templateColumns['_no'] = [
-			'header' => Yii::t('app', 'No'),
-			'class' => 'yii\grid\SerialColumn',
+			'header' => '#',
+			'class' => 'app\components\grid\SerialColumn',
 			'contentOptions' => ['class'=>'center'],
 		];
 		if(!Yii::$app->request->get('view')) {
@@ -122,8 +122,8 @@ class MemberViewHistory extends \app\components\ActiveRecord
 					return isset($model->view) ? $model->view->member->displayname : '-';
 				},
 			];
-			$this->templateColumns['user_search'] = [
-				'attribute' => 'user_search',
+			$this->templateColumns['userDisplayname'] = [
+				'attribute' => 'userDisplayname',
 				'value' => function($model, $key, $index, $column) {
 					return isset($model->view) ? $model->view->user->displayname : '-';
 				},

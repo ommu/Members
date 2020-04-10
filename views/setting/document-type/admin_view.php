@@ -5,9 +5,9 @@
  * @var $this ommu\member\controllers\setting\DocumentTypeController
  * @var $model ommu\member\models\MemberDocumentType
  *
- * @author Putra Sudaryanto <putra@ommu.co>
+ * @author Putra Sudaryanto <putra@ommu.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2018 Ommu Platform (www.ommu.co)
+ * @copyright Copyright (c) 2018 OMMU (www.ommu.id)
  * @created date 2 October 2018, 11:07 WIB
  * @modified date 27 October 2018, 22:44 WIB
  * @link https://github.com/ommu/mod-member
@@ -54,7 +54,7 @@ $this->params['menu']['content'] = [
 			'value' => Yii::$app->formatter->asDatetime($model->creation_date, 'medium'),
 		],
 		[
-			'attribute' => 'creation_search',
+			'attribute' => 'creationDisplayname',
 			'value' => isset($model->creation) ? $model->creation->displayname : '-',
 		],
 		[
@@ -62,7 +62,7 @@ $this->params['menu']['content'] = [
 			'value' => Yii::$app->formatter->asDatetime($model->modified_date, 'medium'),
 		],
 		[
-			'attribute' => 'modified_search',
+			'attribute' => 'modifiedDisplayname',
 			'value' => isset($model->modified) ? $model->modified->displayname : '-',
 		],
 		[
