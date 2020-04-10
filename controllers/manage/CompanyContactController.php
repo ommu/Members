@@ -29,9 +29,9 @@
 namespace ommu\member\controllers\manage;
 
 use Yii;
-use yii\filters\VerbFilter;
 use app\components\Controller;
 use mdm\admin\components\AccessControl;
+use yii\filters\VerbFilter;
 use ommu\member\models\MemberCompanyContact;
 use ommu\member\models\search\MemberCompanyContact as MemberCompanyContactSearch;
 
@@ -95,7 +95,7 @@ class CompanyContactController extends Controller
 	{
 		$company = Yii::$app->request->get('company');
 		if(!$company)
-			throw new \yii\web\NotAcceptableHttpException(Yii::t('app', 'The requested page does not exist.'));
+			throw new \yii\web\ForbiddenHttpException(Yii::t('app', 'The requested page does not exist.'));
 
 		$model = new MemberCompanyContact();
 
@@ -136,6 +136,7 @@ class CompanyContactController extends Controller
 			$model->load(Yii::$app->request->post());
 			// $postData = Yii::$app->request->post();
 			// $model->load($postData);
+			// $model->order = $postData['order'] ? $postData['order'] : 0;
 
 			if($model->save()) {
 				Yii::$app->session->setFlash('success', Yii::t('app', 'Member company contact success updated.'));
@@ -148,7 +149,7 @@ class CompanyContactController extends Controller
 			}
 		}
 
-		$this->view->title = Yii::t('app', 'Update {model-class}: {member-company-id}', ['model-class' => 'Company Contact', 'member-company-id' => $model->memberCompany->member->displayname]);
+		$this->view->title = Yii::t('app', 'Update Company Contact: {member-company-id}', ['member-company-id' => $model->memberCompany->member->displayname]);
 		$this->view->description = '';
 		$this->view->keywords = '';
 		return $this->oRender('admin_update', [
@@ -165,7 +166,7 @@ class CompanyContactController extends Controller
 	{
 		$model = $this->findModel($id);
 
-		$this->view->title = Yii::t('app', 'Detail {model-class}: {member-company-id}', ['model-class' => 'Company Contact', 'member-company-id' => $model->memberCompany->member->displayname]);
+		$this->view->title = Yii::t('app', 'Detail Company Contact: {member-company-id}', ['member-company-id' => $model->memberCompany->member->displayname]);
 		$this->view->description = '';
 		$this->view->keywords = '';
 		return $this->oRender('admin_view', [

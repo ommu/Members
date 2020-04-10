@@ -146,7 +146,7 @@ class MemberSetting extends \app\components\ActiveRecord
 		$this->templateColumns['_no'] = [
 			'header' => '#',
 			'class' => 'app\components\grid\SerialColumn',
-			'contentOptions' => ['class'=>'center'],
+			'contentOptions' => ['class'=>'text-center'],
 		];
 		$this->templateColumns['license'] = [
 			'attribute' => 'license',
@@ -248,7 +248,7 @@ class MemberSetting extends \app\components\ActiveRecord
 				return $this->filterYesNo($model->profile_page_user_auto_follow);
 			},
 			'filter' => $this->filterYesNo(),
-			'contentOptions' => ['class'=>'center'],
+			'contentOptions' => ['class'=>'text-center'],
 		];
 		$this->templateColumns['photo_resize'] = [
 			'attribute' => 'photo_resize',
@@ -256,7 +256,7 @@ class MemberSetting extends \app\components\ActiveRecord
 				return $this->filterYesNo($model->photo_resize);
 			},
 			'filter' => $this->filterYesNo(),
-			'contentOptions' => ['class'=>'center'],
+			'contentOptions' => ['class'=>'text-center'],
 		];
 		$this->templateColumns['friends_auto_follow'] = [
 			'attribute' => 'friends_auto_follow',
@@ -264,7 +264,7 @@ class MemberSetting extends \app\components\ActiveRecord
 				return $this->filterYesNo($model->friends_auto_follow);
 			},
 			'filter' => $this->filterYesNo(),
-			'contentOptions' => ['class'=>'center'],
+			'contentOptions' => ['class'=>'text-center'],
 		];
 	}
 

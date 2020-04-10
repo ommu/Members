@@ -29,9 +29,9 @@
 namespace ommu\member\controllers\manage;
 
 use Yii;
-use yii\filters\VerbFilter;
 use app\components\Controller;
 use mdm\admin\components\AccessControl;
+use yii\filters\VerbFilter;
 use ommu\member\models\MemberDocuments;
 use ommu\member\models\search\MemberDocuments as MemberDocumentsSearch;
 use ommu\member\models\Members;
@@ -96,7 +96,7 @@ class DocumentController extends Controller
 	{
 		$member = Yii::$app->request->get('member');
 		if(!$member)
-			throw new \yii\web\NotAcceptableHttpException(Yii::t('app', 'The requested page does not exist.'));
+			throw new \yii\web\ForbiddenHttpException(Yii::t('app', 'The requested page does not exist.'));
 
 		$model = new MemberDocuments();
 		$memberFind = Members::findOne($member);
@@ -141,6 +141,7 @@ class DocumentController extends Controller
 			$model->load(Yii::$app->request->post());
 			// $postData = Yii::$app->request->post();
 			// $model->load($postData);
+			// $model->order = $postData['order'] ? $postData['order'] : 0;
 
 			if($model->save()) {
 				Yii::$app->session->setFlash('success', Yii::t('app', 'Member document success updated.'));
@@ -153,7 +154,7 @@ class DocumentController extends Controller
 			}
 		}
 
-		$this->view->title = Yii::t('app', 'Update {model-class}: {member-id}', ['model-class' => 'Document', 'member-id' => $model->member->displayname]);
+		$this->view->title = Yii::t('app', 'Update Document: {member-id}', ['member-id' => $model->member->displayname]);
 		$this->view->description = '';
 		$this->view->keywords = '';
 		return $this->oRender('admin_update', [
@@ -171,7 +172,7 @@ class DocumentController extends Controller
 	{
 		$model = $this->findModel($id);
 
-		$this->view->title = Yii::t('app', 'Detail {model-class}: {member-id}', ['model-class' => 'Document', 'member-id' => $model->member->displayname]);
+		$this->view->title = Yii::t('app', 'Detail Document: {member-id}', ['member-id' => $model->member->displayname]);
 		$this->view->description = '';
 		$this->view->keywords = '';
 		return $this->oRender('admin_view', [

@@ -28,9 +28,9 @@
 namespace ommu\member\controllers\setting;
 
 use Yii;
-use yii\filters\VerbFilter;
 use app\components\Controller;
 use mdm\admin\components\AccessControl;
+use yii\filters\VerbFilter;
 use ommu\member\models\MemberFriendType;
 use ommu\member\models\search\MemberFriendType as MemberFriendTypeSearch;
 
@@ -97,6 +97,7 @@ class FriendTypeController extends Controller
 			$model->load(Yii::$app->request->post());
 			// $postData = Yii::$app->request->post();
 			// $model->load($postData);
+			// $model->order = $postData['order'] ? $postData['order'] : 0;
 
 			if($model->save()) {
 				Yii::$app->session->setFlash('success', Yii::t('app', 'Member friend type success created.'));
@@ -131,6 +132,7 @@ class FriendTypeController extends Controller
 			$model->load(Yii::$app->request->post());
 			// $postData = Yii::$app->request->post();
 			// $model->load($postData);
+			// $model->order = $postData['order'] ? $postData['order'] : 0;
 
 			if($model->save()) {
 				Yii::$app->session->setFlash('success', Yii::t('app', 'Member friend type success updated.'));
@@ -143,7 +145,7 @@ class FriendTypeController extends Controller
 			}
 		}
 
-		$this->view->title = Yii::t('app', 'Update {model-class}: {type-name}', ['model-class' => 'Friend Type', 'type-name' => $model->title->message]);
+		$this->view->title = Yii::t('app', 'Update Friend Type: {type-name}', ['type-name' => $model->title->message]);
 		$this->view->description = '';
 		$this->view->keywords = '';
 		return $this->oRender('admin_update', [
@@ -160,7 +162,7 @@ class FriendTypeController extends Controller
 	{
 		$model = $this->findModel($id);
 
-		$this->view->title = Yii::t('app', 'Detail {model-class}: {type-name}', ['model-class' => 'Friend Type', 'type-name' => $model->title->message]);
+		$this->view->title = Yii::t('app', 'Detail Friend Type: {type-name}', ['type-name' => $model->title->message]);
 		$this->view->description = '';
 		$this->view->keywords = '';
 		return $this->oRender('admin_view', [

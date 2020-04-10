@@ -193,7 +193,7 @@ class MemberProfile extends \app\components\ActiveRecord
 		$this->templateColumns['_no'] = [
 			'header' => '#',
 			'class' => 'app\components\grid\SerialColumn',
-			'contentOptions' => ['class'=>'center'],
+			'contentOptions' => ['class'=>'text-center'],
 		];
 		$this->templateColumns['profile_name_i'] = [
 			'attribute' => 'profile_name_i',
@@ -264,7 +264,7 @@ class MemberProfile extends \app\components\ActiveRecord
 				return $this->filterYesNo($model->profile_personal);
 			},
 			'filter' => $this->filterYesNo(),
-			'contentOptions' => ['class'=>'center'],
+			'contentOptions' => ['class'=>'text-center'],
 		];
 		$this->templateColumns['multiple_user'] = [
 			'attribute' => 'multiple_user',
@@ -272,7 +272,7 @@ class MemberProfile extends \app\components\ActiveRecord
 				return $this->filterYesNo($model->multiple_user);
 			},
 			'filter' => $this->filterYesNo(),
-			'contentOptions' => ['class'=>'center'],
+			'contentOptions' => ['class'=>'text-center'],
 		];
 		if(!Yii::$app->request->get('trash')) {
 			$this->templateColumns['publish'] = [
@@ -282,7 +282,7 @@ class MemberProfile extends \app\components\ActiveRecord
 					return $this->quickAction($url, $model->publish, 'Enable,Disable');
 				},
 				'filter' => $this->filterYesNo(),
-				'contentOptions' => ['class'=>'center'],
+				'contentOptions' => ['class'=>'text-center'],
 				'format' => 'raw',
 			];
 		}

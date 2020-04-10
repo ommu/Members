@@ -209,7 +209,7 @@ class MemberCompany extends \app\components\ActiveRecord
 		$this->templateColumns['_no'] = [
 			'header' => '#',
 			'class' => 'app\components\grid\SerialColumn',
-			'contentOptions' => ['class'=>'center'],
+			'contentOptions' => ['class'=>'text-center'],
 		];
 		if(!Yii::$app->request->get('member')) {
 			$this->templateColumns['member_i'] = [

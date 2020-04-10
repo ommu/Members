@@ -106,7 +106,7 @@ class MemberViewHistory extends \app\components\ActiveRecord
 		$this->templateColumns['_no'] = [
 			'header' => '#',
 			'class' => 'app\components\grid\SerialColumn',
-			'contentOptions' => ['class'=>'center'],
+			'contentOptions' => ['class'=>'text-center'],
 		];
 		if(!Yii::$app->request->get('view')) {
 			$this->templateColumns['profile_search'] = [

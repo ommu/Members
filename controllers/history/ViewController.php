@@ -24,9 +24,9 @@
 namespace ommu\member\controllers\history;
 
 use Yii;
-use yii\filters\VerbFilter;
 use app\components\Controller;
 use mdm\admin\components\AccessControl;
+use yii\filters\VerbFilter;
 use ommu\member\models\MemberViewHistory;
 use ommu\member\models\search\MemberViewHistory as MemberViewHistorySearch;
 
@@ -88,7 +88,7 @@ class ViewController extends Controller
 	{
 		$model = $this->findModel($id);
 
-		$this->view->title = Yii::t('app', 'Detail {model-class}: {view-id}', ['model-class' => 'View History', 'view-id' => $model->view->member->displayname]);
+		$this->view->title = Yii::t('app', 'Detail View Username: {view-id}', ['view-id' => $model->view->member->displayname]);
 		$this->view->description = '';
 		$this->view->keywords = '';
 		return $this->oRender('admin_view', [

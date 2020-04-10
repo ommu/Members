@@ -28,9 +28,9 @@
 namespace ommu\member\controllers\manage;
 
 use Yii;
-use yii\filters\VerbFilter;
 use app\components\Controller;
 use mdm\admin\components\AccessControl;
+use yii\filters\VerbFilter;
 use ommu\member\models\MemberUser;
 use ommu\member\models\search\MemberUser as MemberUserSearch;
 
@@ -93,7 +93,7 @@ class UserController extends Controller
 	{
 		$member = Yii::$app->request->get('member');
 		if(!$member)
-			throw new \yii\web\NotAcceptableHttpException(Yii::t('app', 'The requested page does not exist.'));
+			throw new \yii\web\ForbiddenHttpException(Yii::t('app', 'The requested page does not exist.'));
 
 		$model = new MemberUser();
 
@@ -134,6 +134,7 @@ class UserController extends Controller
 			$model->load(Yii::$app->request->post());
 			// $postData = Yii::$app->request->post();
 			// $model->load($postData);
+			// $model->order = $postData['order'] ? $postData['order'] : 0;
 
 			if($model->save()) {
 				Yii::$app->session->setFlash('success', Yii::t('app', 'Member user success updated.'));
@@ -146,7 +147,7 @@ class UserController extends Controller
 			}
 		}
 
-		$this->view->title = Yii::t('app', 'Update {model-class}: {member-id}', ['model-class' => 'User', 'member-id' => $model->member->displayname]);
+		$this->view->title = Yii::t('app', 'Update User: {member-id}', ['member-id' => $model->member->displayname]);
 		$this->view->description = '';
 		$this->view->keywords = '';
 		return $this->oRender('admin_update', [
@@ -163,7 +164,7 @@ class UserController extends Controller
 	{
 		$model = $this->findModel($id);
 
-		$this->view->title = Yii::t('app', 'Detail {model-class}: {member-id}', ['model-class' => 'User', 'member-id' => $model->member->displayname]);
+		$this->view->title = Yii::t('app', 'Detail User: {member-id}', ['member-id' => $model->member->displayname]);
 		$this->view->description = '';
 		$this->view->keywords = '';
 		return $this->oRender('admin_view', [

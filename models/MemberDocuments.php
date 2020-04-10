@@ -162,7 +162,7 @@ class MemberDocuments extends \app\components\ActiveRecord
 		$this->templateColumns['_no'] = [
 			'header' => '#',
 			'class' => 'app\components\grid\SerialColumn',
-			'contentOptions' => ['class'=>'center'],
+			'contentOptions' => ['class'=>'text-center'],
 		];
 		if(!Yii::$app->request->get('member')) {
 			$this->templateColumns['member_search'] = [
@@ -248,7 +248,7 @@ class MemberDocuments extends \app\components\ActiveRecord
 			'value' => function($model, $key, $index, $column) {
 				return self::getStatus($model->status);
 			},
-			'contentOptions' => ['class'=>'center'],
+			'contentOptions' => ['class'=>'text-center'],
 			'format' => 'raw',
 		];
 		if(!Yii::$app->request->get('trash')) {
@@ -259,7 +259,7 @@ class MemberDocuments extends \app\components\ActiveRecord
 					return $this->quickAction($url, $model->publish);
 				},
 				'filter' => $this->filterYesNo(),
-				'contentOptions' => ['class'=>'center'],
+				'contentOptions' => ['class'=>'text-center'],
 				'format' => 'raw',
 			];
 		}

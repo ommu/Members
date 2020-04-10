@@ -26,9 +26,9 @@
 namespace ommu\member\controllers\manage;
 
 use Yii;
-use yii\filters\VerbFilter;
 use app\components\Controller;
 use mdm\admin\components\AccessControl;
+use yii\filters\VerbFilter;
 use ommu\member\models\MemberFriends;
 use ommu\member\models\search\MemberFriends as MemberFriendsSearch;
 
@@ -94,6 +94,7 @@ class FriendController extends Controller
 			$model->load(Yii::$app->request->post());
 			// $postData = Yii::$app->request->post();
 			// $model->load($postData);
+			// $model->order = $postData['order'] ? $postData['order'] : 0;
 
 			if($model->save()) {
 				Yii::$app->session->setFlash('success', Yii::t('app', 'Member friend success created.'));
@@ -128,6 +129,7 @@ class FriendController extends Controller
 			$model->load(Yii::$app->request->post());
 			// $postData = Yii::$app->request->post();
 			// $model->load($postData);
+			// $model->order = $postData['order'] ? $postData['order'] : 0;
 
 			if($model->save()) {
 				Yii::$app->session->setFlash('success', Yii::t('app', 'Member friend success updated.'));
@@ -140,7 +142,7 @@ class FriendController extends Controller
 			}
 		}
 
-		$this->view->title = Yii::t('app', 'Update {model-class}: {request-id}', ['model-class' => 'Friend', 'request-id' => $model->request->displayname]);
+		$this->view->title = Yii::t('app', 'Update Friend: {request-id}', ['request-id' => $model->request->displayname]);
 		$this->view->description = '';
 		$this->view->keywords = '';
 		return $this->oRender('admin_update', [
@@ -157,7 +159,7 @@ class FriendController extends Controller
 	{
 		$model = $this->findModel($id);
 
-		$this->view->title = Yii::t('app', 'Detail {model-class}: {request-id}', ['model-class' => 'Friend', 'request-id' => $model->request->displayname]);
+		$this->view->title = Yii::t('app', 'Detail Friend: {request-id}', ['request-id' => $model->request->displayname]);
 		$this->view->description = '';
 		$this->view->keywords = '';
 		return $this->oRender('admin_view', [

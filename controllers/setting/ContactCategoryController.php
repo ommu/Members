@@ -29,9 +29,9 @@
 namespace ommu\member\controllers\setting;
 
 use Yii;
-use yii\filters\VerbFilter;
 use app\components\Controller;
 use mdm\admin\components\AccessControl;
+use yii\filters\VerbFilter;
 use ommu\member\models\MemberContactCategory;
 use ommu\member\models\search\MemberContactCategory as MemberContactCategorySearch;
 
@@ -98,6 +98,7 @@ class ContactCategoryController extends Controller
 			$model->load(Yii::$app->request->post());
 			// $postData = Yii::$app->request->post();
 			// $model->load($postData);
+			// $model->order = $postData['order'] ? $postData['order'] : 0;
 
 			if($model->save()) {
 				Yii::$app->session->setFlash('success', Yii::t('app', 'Member contact category success created.'));
@@ -132,6 +133,7 @@ class ContactCategoryController extends Controller
 			$model->load(Yii::$app->request->post());
 			// $postData = Yii::$app->request->post();
 			// $model->load($postData);
+			// $model->order = $postData['order'] ? $postData['order'] : 0;
 
 			if($model->save()) {
 				Yii::$app->session->setFlash('success', Yii::t('app', 'Member contact category success updated.'));
@@ -144,7 +146,7 @@ class ContactCategoryController extends Controller
 			}
 		}
 
-		$this->view->title = Yii::t('app', 'Update {model-class}: {cat-name}', ['model-class' => 'Contact Category', 'cat-name' => $model->title->message]);
+		$this->view->title = Yii::t('app', 'Update Contact Category: {cat-name}', ['cat-name' => $model->title->message]);
 		$this->view->description = '';
 		$this->view->keywords = '';
 		return $this->oRender('admin_update', [
@@ -161,7 +163,7 @@ class ContactCategoryController extends Controller
 	{
 		$model = $this->findModel($id);
 
-		$this->view->title = Yii::t('app', 'Detail {model-class}: {cat-name}', ['model-class' => 'Contact Category', 'cat-name' => $model->title->message]);
+		$this->view->title = Yii::t('app', 'Detail Contact Category: {cat-name}', ['cat-name' => $model->title->message]);
 		$this->view->description = '';
 		$this->view->keywords = '';
 		return $this->oRender('admin_view', [

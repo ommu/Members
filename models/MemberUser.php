@@ -164,7 +164,7 @@ class MemberUser extends \app\components\ActiveRecord
 		$this->templateColumns['_no'] = [
 			'header' => '#',
 			'class' => 'app\components\grid\SerialColumn',
-			'contentOptions' => ['class'=>'center'],
+			'contentOptions' => ['class'=>'text-center'],
 		];
 		if(!Yii::$app->request->get('member')) {
 			$this->templateColumns['member_search'] = [
@@ -243,7 +243,7 @@ class MemberUser extends \app\components\ActiveRecord
 				return $this->filterYesNo($model->owner);
 			},
 			'filter' => $this->filterYesNo(),
-			'contentOptions' => ['class'=>'center'],
+			'contentOptions' => ['class'=>'text-center'],
 			'format' => 'raw',
 		];
 		if(!Yii::$app->request->get('trash')) {
@@ -254,7 +254,7 @@ class MemberUser extends \app\components\ActiveRecord
 					return $this->quickAction($url, $model->publish, 'Active,Deactive');
 				},
 				'filter' => $this->filterYesNo(),
-				'contentOptions' => ['class'=>'center'],
+				'contentOptions' => ['class'=>'text-center'],
 				'format' => 'raw',
 			];
 		}

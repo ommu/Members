@@ -174,7 +174,7 @@ class MemberProfileCategory extends \app\components\ActiveRecord
 		$this->templateColumns['_no'] = [
 			'header' => '#',
 			'class' => 'app\components\grid\SerialColumn',
-			'contentOptions' => ['class'=>'center'],
+			'contentOptions' => ['class'=>'text-center'],
 		];
 		if(!Yii::$app->request->get('profile')) {
 			$this->templateColumns['profile_id'] = [
@@ -252,7 +252,7 @@ class MemberProfileCategory extends \app\components\ActiveRecord
 					return $this->quickAction($url, $model->publish, 'Enable,Disable');
 				},
 				'filter' => $this->filterYesNo(),
-				'contentOptions' => ['class'=>'center'],
+				'contentOptions' => ['class'=>'text-center'],
 				'format' => 'raw',
 			];
 		}

@@ -24,9 +24,9 @@
 namespace ommu\member\controllers\history;
 
 use Yii;
-use yii\filters\VerbFilter;
 use app\components\Controller;
 use mdm\admin\components\AccessControl;
+use yii\filters\VerbFilter;
 use ommu\member\models\MemberHistoryDisplayname;
 use ommu\member\models\search\MemberHistoryDisplayname as MemberHistoryDisplaynameSearch;
 
@@ -88,7 +88,7 @@ class DisplaynameController extends Controller
 	{
 		$model = $this->findModel($id);
 
-		$this->view->title = Yii::t('app', 'Detail {model-class}: {displayname}', ['model-class' => 'History Displayname', 'displayname' => $model->displayname]);
+		$this->view->title = Yii::t('app', 'Detail History Displayname: {displayname}', ['displayname' => $model->displayname]);
 		$this->view->description = '';
 		$this->view->keywords = '';
 		return $this->oRender('admin_view', [

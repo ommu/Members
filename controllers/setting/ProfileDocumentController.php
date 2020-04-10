@@ -29,9 +29,9 @@
 namespace ommu\member\controllers\setting;
 
 use Yii;
-use yii\filters\VerbFilter;
 use app\components\Controller;
 use mdm\admin\components\AccessControl;
+use yii\filters\VerbFilter;
 use ommu\member\models\MemberProfileDocument;
 use ommu\member\models\search\MemberProfileDocument as MemberProfileDocumentSearch;
 
@@ -94,7 +94,7 @@ class ProfileDocumentController extends Controller
 	{
 		$profile = Yii::$app->request->get('profile');
 		if(!$profile)
-			throw new \yii\web\NotAcceptableHttpException(Yii::t('app', 'The requested page does not exist.'));
+			throw new \yii\web\ForbiddenHttpException(Yii::t('app', 'The requested page does not exist.'));
 
 		$model = new MemberProfileDocument();
 

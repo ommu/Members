@@ -121,7 +121,7 @@ class MemberFollowerHistory extends \app\components\ActiveRecord
 		$this->templateColumns['_no'] = [
 			'header' => '#',
 			'class' => 'app\components\grid\SerialColumn',
-			'contentOptions' => ['class'=>'center'],
+			'contentOptions' => ['class'=>'text-center'],
 		];
 		if(!Yii::$app->request->get('follower')) {
 			$this->templateColumns['profile_search'] = [
@@ -167,7 +167,7 @@ class MemberFollowerHistory extends \app\components\ActiveRecord
 					return $this->filterYesNo($model->publish);
 				},
 				'filter' => $this->filterYesNo(),
-				'contentOptions' => ['class'=>'center'],
+				'contentOptions' => ['class'=>'text-center'],
 				'format' => 'raw',
 			];
 		}

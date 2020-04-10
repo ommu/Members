@@ -25,9 +25,9 @@
 namespace ommu\member\controllers\setting;
 
 use Yii;
-use yii\filters\VerbFilter;
 use app\components\Controller;
 use mdm\admin\components\AccessControl;
+use yii\filters\VerbFilter;
 use ommu\member\models\MemberSetting;
 use yii\data\ActiveDataProvider;
 
@@ -95,10 +95,11 @@ class AdminController extends Controller
 			$model->load(Yii::$app->request->post());
 			// $postData = Yii::$app->request->post();
 			// $model->load($postData);
+			// $model->order = $postData['order'] ? $postData['order'] : 0;
 
 			if($model->save()) {
 				Yii::$app->session->setFlash('success', Yii::t('app', 'Member setting success updated.'));
-				return $this->redirect(['index']);
+				return $this->redirect(['update']);
 
 			} else {
 				if(Yii::$app->request->isAjax)
@@ -122,8 +123,9 @@ class AdminController extends Controller
 	 */
 	public function actionDelete()
 	{
-		$this->findModel(1)->delete();
-		
+		$model = $this->findModel(1);
+		$model->delete();
+
 		Yii::$app->session->setFlash('success', Yii::t('app', 'Member setting success deleted.'));
 		return $this->redirect(['index']);
 	}

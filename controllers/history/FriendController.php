@@ -24,9 +24,9 @@
 namespace ommu\member\controllers\history;
 
 use Yii;
-use yii\filters\VerbFilter;
 use app\components\Controller;
 use mdm\admin\components\AccessControl;
+use yii\filters\VerbFilter;
 use ommu\member\models\MemberFriendHistory;
 use ommu\member\models\search\MemberFriendHistory as MemberFriendHistorySearch;
 
@@ -88,7 +88,7 @@ class FriendController extends Controller
 	{
 		$model = $this->findModel($id);
 
-		$this->view->title = Yii::t('app', 'Detail {model-class}: {request-id}', ['model-class' => 'Friend History', 'request-id' => $model->friend->request->displayname]);
+		$this->view->title = Yii::t('app', 'Detail Friend History: {request-id}', ['request-id' => $model->friend->request->displayname]);
 		$this->view->description = '';
 		$this->view->keywords = '';
 		return $this->oRender('admin_view', [

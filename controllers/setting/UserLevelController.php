@@ -29,9 +29,9 @@
 namespace ommu\member\controllers\setting;
 
 use Yii;
-use yii\filters\VerbFilter;
 use app\components\Controller;
 use mdm\admin\components\AccessControl;
+use yii\filters\VerbFilter;
 use ommu\member\models\MemberUserlevel;
 use ommu\member\models\search\MemberUserlevel as MemberUserlevelSearch;
 
@@ -98,6 +98,7 @@ class UserLevelController extends Controller
 			$model->load(Yii::$app->request->post());
 			// $postData = Yii::$app->request->post();
 			// $model->load($postData);
+			// $model->order = $postData['order'] ? $postData['order'] : 0;
 
 			if($model->save()) {
 				Yii::$app->session->setFlash('success', Yii::t('app', 'Member userlevel success created.'));
@@ -132,6 +133,7 @@ class UserLevelController extends Controller
 			$model->load(Yii::$app->request->post());
 			// $postData = Yii::$app->request->post();
 			// $model->load($postData);
+			// $model->order = $postData['order'] ? $postData['order'] : 0;
 
 			if($model->save()) {
 				Yii::$app->session->setFlash('success', Yii::t('app', 'Member userlevel success updated.'));
@@ -144,7 +146,7 @@ class UserLevelController extends Controller
 			}
 		}
 
-		$this->view->title = Yii::t('app', 'Update {model-class}: {level-name}', ['model-class' => 'Userlevel', 'level-name' => $model->title->message]);
+		$this->view->title = Yii::t('app', 'Update Userlevel: {level-name}', ['level-name' => $model->title->message]);
 		$this->view->description = '';
 		$this->view->keywords = '';
 		return $this->oRender('admin_update', [
@@ -161,7 +163,7 @@ class UserLevelController extends Controller
 	{
 		$model = $this->findModel($id);
 
-		$this->view->title = Yii::t('app', 'Detail {model-class}: {level-name}', ['model-class' => 'Userlevel', 'level-name' => $model->title->message]);
+		$this->view->title = Yii::t('app', 'Detail Userlevel: {level-name}', ['level-name' => $model->title->message]);
 		$this->view->description = '';
 		$this->view->keywords = '';
 		return $this->oRender('admin_view', [

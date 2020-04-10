@@ -28,9 +28,9 @@
 namespace ommu\member\controllers\setting;
 
 use Yii;
-use yii\filters\VerbFilter;
 use app\components\Controller;
 use mdm\admin\components\AccessControl;
+use yii\filters\VerbFilter;
 use ommu\member\models\MemberCompanyType;
 use ommu\member\models\search\MemberCompanyType as MemberCompanyTypeSearch;
 
@@ -97,6 +97,7 @@ class CompanyTypeController extends Controller
 			$model->load(Yii::$app->request->post());
 			// $postData = Yii::$app->request->post();
 			// $model->load($postData);
+			// $model->order = $postData['order'] ? $postData['order'] : 0;
 
 			if($model->save()) {
 				Yii::$app->session->setFlash('success', Yii::t('app', 'Member company type success created.'));
@@ -131,6 +132,7 @@ class CompanyTypeController extends Controller
 			$model->load(Yii::$app->request->post());
 			// $postData = Yii::$app->request->post();
 			// $model->load($postData);
+			// $model->order = $postData['order'] ? $postData['order'] : 0;
 
 			if($model->save()) {
 				Yii::$app->session->setFlash('success', Yii::t('app', 'Member company type success updated.'));
@@ -143,7 +145,7 @@ class CompanyTypeController extends Controller
 			}
 		}
 
-		$this->view->title = Yii::t('app', 'Update {model-class}: {type-name}', ['model-class' => 'Company Type', 'type-name' => $model->title->message]);
+		$this->view->title = Yii::t('app', 'Update Company Type: {type-name}', ['type-name' => $model->title->message]);
 		$this->view->description = '';
 		$this->view->keywords = '';
 		return $this->oRender('admin_update', [
@@ -160,7 +162,7 @@ class CompanyTypeController extends Controller
 	{
 		$model = $this->findModel($id);
 
-		$this->view->title = Yii::t('app', 'Detail {model-class}: {type-name}', ['model-class' => 'Company Type', 'type-name' => $model->title->message]);
+		$this->view->title = Yii::t('app', 'Detail Company Type: {type-name}', ['type-name' => $model->title->message]);
 		$this->view->description = '';
 		$this->view->keywords = '';
 		return $this->oRender('admin_view', [
