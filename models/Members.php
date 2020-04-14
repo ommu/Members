@@ -225,7 +225,6 @@ class Members extends \app\components\ActiveRecord
 		return $this->hasMany(MemberUser::className(), ['member_id' => 'member_id'])
 			->alias('users')
 			->andOnCondition([sprintf('%s.publish', 'users') => 1]);
-			
 	}
 
 	/**
@@ -298,21 +297,31 @@ class Members extends \app\components\ActiveRecord
 		return $this->hasOne(Users::className(), ['user_id' => 'modified_id']);
 	}
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUserOwner()
+    {
+        return $this->hasOne(MemberUser::className(), ['member_id' => 'member_id'])
+            ->alias('userOwner')
+            ->andOnCondition([sprintf('%s.publish', 'userOwner') => 1, sprintf('%s.owner', 'userOwner') => 1]);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUserInfo()
+    {
+        return $this->hasOne(Users::className(), ['user_id' => 'user_id'])
+            ->via('userOwner');
+    }
+
 	/**
 	 * @return \yii\db\ActiveQuery
 	 */
 	public function getUser()
 	{
 		return $this->hasOne(MemberUserView::className(), ['member_id' => 'member_id']);
-	}
-
-	/**
-	 * @return \yii\db\ActiveQuery
-	 */
-	public function getUserInfo()
-	{
-		return $this->hasOne(Users::className(), ['user_id' => 'user_id'])
-			->via('user');
 	}
 
 	/**
@@ -518,9 +527,69 @@ class Members extends \app\components\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function getMemberId()
+    public function getProfilePersonal()
     {
-        return new \ommu\member\models\query\Members(get_called_class());
+        if (isset(Yii::$app->params['newsfeed']['profilePersonal'])) {
+            return Yii::$app->params['newsfeed']['profilePersonal'];
+        }
+
+        return 0;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getProfileCompany()
+    {
+        if (isset(Yii::$app->params['newsfeed']['profileCompany'])) {
+            return Yii::$app->params['newsfeed']['profileCompany'];
+        }
+
+        return 0;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getProfileGroup()
+    {
+        if (isset(Yii::$app->params['newsfeed']['profileGroup'])) {
+            return Yii::$app->params['newsfeed']['profileGroup'];
+        }
+
+        return 0;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getMemberUserId($username)
+    {
+        $model = self::find()
+            ->select(['member_id', 'profile_id'])
+            ->where(['publish' => 1])
+            ->andWhere(['username' => $username]);
+        if (isset(Yii::$app->params['newsfeed']['profileIgnore'])) {
+            $model->andWhere(['NOT IN', 'profile_id', Yii::$app->params['newsfeed']['profileIgnore']]);
+        }
+        $model = $model->one();
+
+        $memberId = '';
+        if ($model != null) {
+            $memberId = $model->member_id;
+        }
+
+        $userId = '';
+        if ($model != null && $model->profile_id == $model->profilePersonal) {
+            if(isset($model->userOwner)) {
+                $userId = $model->userOwner->user_id;
+            }
+        }
+
+        return [
+            'member_id' => $memberId,
+            'user_id' => $userId,
+        ];
     }
 
 	/**
