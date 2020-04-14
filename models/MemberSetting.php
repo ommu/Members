@@ -122,15 +122,6 @@ class MemberSetting extends \app\components\ActiveRecord
 	}
 
 	/**
-	 * {@inheritdoc}
-	 * @return \ommu\member\models\query\MemberSetting the active query used by this AR class.
-	 */
-	public static function find()
-	{
-		return new \ommu\member\models\query\MemberSetting(get_called_class());
-	}
-
-	/**
 	 * Set default columns to display
 	 */
 	public function init()
