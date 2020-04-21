@@ -71,6 +71,8 @@ class Members extends \app\components\ActiveRecord
 	public $old_photo_header_i;
 	public $old_photo_profile_i;
 	public $old_approved_i;
+    // owner user_id
+    public $user_id;
 
 	public $approved_search;
 	public $creationDisplayname;
@@ -601,7 +603,8 @@ class Members extends \app\components\ActiveRecord
 
 		$this->old_photo_header_i = $this->photo_header;
 		$this->old_photo_profile_i = $this->photo_profile;
-        $this->old_approved_i = $this->approved;
+		$this->old_approved_i = $this->approved;
+        $this->user_id = $this->userOwner->user_id;
 
         $this->oldProfileId = $this->profile_id;
 	}
