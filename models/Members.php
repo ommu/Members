@@ -73,7 +73,6 @@ class Members extends \app\components\ActiveRecord
 	public $old_approved_i;
     // owner user_id
     public $user_id;
-    public $photoOverwrite = false;
 
 	public $approved_search;
 	public $creationDisplayname;
@@ -680,7 +679,7 @@ class Members extends \app\components\ActiveRecord
 						$this->photo_header = $fileName;
 					}
 				} else {
-					if($this->photo_header == '' && $this->photoOverwrite == false)
+					if($this->photo_header == '')
 						$this->photo_header = $this->old_photo_header_i;
 				}
 
@@ -693,7 +692,7 @@ class Members extends \app\components\ActiveRecord
 						$this->photo_profile = $fileName;
 					}
 				} else {
-					if($this->photo_profile == '' && $this->photoOverwrite == false)
+					if($this->photo_profile == '')
 						$this->photo_profile = $this->old_photo_profile_i;
 				}
 	
